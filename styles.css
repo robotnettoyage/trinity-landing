@@ -560,79 +560,86 @@ section {
 .proof-sep { color: var(--border); margin-inline: 0.25rem; }
 
 /* ==========================================================================
-   12. SECTION — PROBLEM · Pain cards (Glassmorphism)
+   12. SECTION — PROBLEM · Accordion layout (2 cols sticky)
    ========================================================================== */
-.problem__grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 2rem;
+.problem__layout {
+  display: flex;
+  gap: clamp(3rem, 6vw, 5rem);
+  align-items: flex-start;
 }
+.problem__sticky {
+  width: 38%;
+  flex-shrink: 0;
+  position: sticky;
+  top: 120px;
+  text-align: left;
+}
+.problem__sticky .section-title,
+.problem__sticky .section-subtitle { text-align: left; margin-inline: 0; }
+.problem__accordion { flex: 1; min-width: 0; }
 
-/* ---- Pain card base ---- */
-.pain-card {
-  position: relative;
-  background: rgba(255, 255, 255, 0.72);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border: 1px solid rgba(255, 255, 255, 0.58);
-  border-radius: 24px;
-  padding: 40px;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.07), 0 1px 2px rgba(0,0,0,0.04);
-  transition:
-    transform    0.4s var(--ease),
-    box-shadow   0.4s var(--ease),
-    background   0.4s var(--ease);
-  will-change: transform;
-  overflow: hidden;
+/* Accordion items */
+.acc-item {
+  --acc-color: var(--blue);
+  border-bottom: 1px solid #E8E8E8;
 }
-.pain-card:hover {
-  transform: translateY(-10px);
-  background: rgba(255, 255, 255, 0.88);
-  box-shadow:
-    0 16px 48px rgba(0,0,0,0.11),
-    0 4px 12px rgba(0,0,0,0.06),
-    0 1px 2px rgba(0,0,0,0.04);
-}
+.acc-item:first-child { border-top: 1px solid #E8E8E8; }
+.acc-item--blue   { --acc-color: var(--blue);   }
+.acc-item--red    { --acc-color: var(--red);     }
+.acc-item--yellow { --acc-color: var(--yellow);  }
+.acc-item--green  { --acc-color: var(--green);   }
 
-/* ---- Glow dot — top right ---- */
-.pain-card__dot {
-  position: absolute;
-  top: 24px;
-  right: 24px;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  transition: transform 0.4s var(--ease-back);
-  z-index: 1;
-}
-.pain-card:hover .pain-card__dot {
-  transform: scale(1.5);
-}
-
-.pain-card--blue  .pain-card__dot { background: var(--blue);   box-shadow: 0 0 14px rgba(66,133,244,0.50);  }
-.pain-card--red   .pain-card__dot { background: var(--red);    box-shadow: 0 0 14px rgba(234,67,53,0.50);   }
-.pain-card--yellow .pain-card__dot{ background: var(--yellow); box-shadow: 0 0 14px rgba(251,188,5,0.55);   }
-.pain-card--green .pain-card__dot { background: var(--green);  box-shadow: 0 0 14px rgba(52,168,83,0.50);   }
-
-/* ---- 64px circle icon ---- */
-.pain-card__icon {
-  width: 64px;
-  height: 64px;
-  border-radius: 50%;
+.acc-item__trigger {
+  width: 100%;
+  background: none;
+  border: none;
   display: flex;
   align-items: center;
-  justify-content: center;
-  margin-bottom: 1.5rem;
-  transition: transform 0.4s var(--ease-back);
+  gap: 1rem;
+  padding: 1.5rem 0;
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
 }
-.pain-card:hover .pain-card__icon {
-  transform: scale(1.08) rotate(-4deg);
+.acc-item__num {
+  font-size: 1.5rem;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--acc-color);
+  opacity: 0.3;
+  flex-shrink: 0;
+  width: 2.5rem;
+  transition: opacity 0.3s ease, transform 0.3s var(--ease-back);
 }
+.acc-item.is-open .acc-item__num { opacity: 1; transform: scale(1.1); }
+.acc-item__title {
+  flex: 1;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.4;
+}
+.acc-item__chevron {
+  flex-shrink: 0;
+  color: var(--text-secondary);
+  transition: transform 0.4s var(--ease);
+}
+.acc-item.is-open .acc-item__chevron { transform: rotate(180deg); }
 
-.pain-card--blue   .pain-card__icon { background: linear-gradient(135deg, rgba(66,133,244,0.10), rgba(66,133,244,0.22));  }
-.pain-card--red    .pain-card__icon { background: linear-gradient(135deg, rgba(234,67,53,0.10),  rgba(234,67,53,0.22));   }
-.pain-card--yellow .pain-card__icon { background: linear-gradient(135deg, rgba(251,188,5,0.12),  rgba(251,188,5,0.26));   }
-.pain-card--green  .pain-card__icon { background: linear-gradient(135deg, rgba(52,168,83,0.10),  rgba(52,168,83,0.22));   }
+.acc-item__body {
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 400ms ease, opacity 400ms ease;
+}
+.acc-item__body[hidden] { display: block !important; }
+.acc-item.is-open .acc-item__body { max-height: 200px; opacity: 1; }
+.acc-item__body p {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  padding: 0 0 1.5rem 3.5rem;
+}
 
 /* ==========================================================================
    13. SECTION — SOLUTION
@@ -652,170 +659,158 @@ section {
   margin-bottom: clamp(2.5rem, 5vw, 4rem);
 }
 
-.solution__pillars {
+/* Tabs nav */
+.tabs {
+  display: flex;
+  background: #F1F3F4;
+  border-radius: 16px;
+  padding: 6px;
+  gap: 4px;
+  max-width: 640px;
+  margin-inline: auto;
+}
+.tab-btn {
+  flex: 1;
+  padding: 14px 20px;
+  border: none;
+  border-radius: 12px;
+  background: transparent;
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+  white-space: nowrap;
+}
+.tab-btn--active { background: var(--white); box-shadow: 0 2px 8px rgba(0,0,0,0.09); }
+.tab-btn[data-tab="1"].tab-btn--active { color: var(--blue);  }
+.tab-btn[data-tab="2"].tab-btn--active { color: var(--red);   }
+.tab-btn[data-tab="3"].tab-btn--active { color: var(--green); }
+
+.tabs__panel { min-height: 360px; margin-top: 2.5rem; }
+
+.tab-content { opacity: 0; transition: opacity 0.35s ease; pointer-events: none; }
+.tab-content[hidden] { display: block !important; }
+.tab-content.is-active { opacity: 1; pointer-events: auto; }
+
+.tab-content__layout {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 2rem;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: center;
 }
-
-/* ---- Pillar — gradient border bottom + decorative number ---- */
-.pillar {
-  background: var(--white);
-  border-radius: 20px;
-  padding: 48px 36px 44px;
-  border-bottom: none;
-  position: relative;
-  overflow: hidden;
-  box-shadow: 0 2px 16px rgba(0,0,0,0.05), 0 1px 3px rgba(0,0,0,0.04);
-  transition:
-    transform    0.35s var(--ease),
-    box-shadow   0.35s var(--ease);
-  will-change: transform;
-}
-
-/* Gradient bottom bar via ::after — all 4 colors */
-.pillar::after {
-  content: '';
+.tab-content__text { position: relative; }
+.tab-content__num {
   position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--blue), var(--red), var(--yellow), var(--green));
-  border-radius: 0 0 20px 20px;
-  transition: height 0.35s var(--ease);
-}
-
-.pillar:hover {
-  transform: translateY(-6px);
-  box-shadow:
-    0 12px 40px rgba(0,0,0,0.09),
-    0 4px 12px rgba(0,0,0,0.05),
-    0 1px 3px rgba(0,0,0,0.03);
-}
-.pillar:hover::after {
-  height: 5px;
-}
-
-/* Decorative background number */
-.pillar__num {
-  position: absolute;
-  top: -0.5rem;
-  right: 1.25rem;
-  font-size: 5rem;
+  top: -1rem; left: -0.5rem;
+  font-size: 8rem;
   font-weight: 900;
   line-height: 1;
   letter-spacing: -0.06em;
   color: var(--text);
-  opacity: 0.055;
+  opacity: 0.04;
   pointer-events: none;
   user-select: none;
-  transition: opacity 0.35s var(--ease);
 }
-.pillar:hover .pillar__num {
-  opacity: 0.08;
+.tab-content__title {
+  font-size: clamp(1.25rem, 2.5vw, 1.625rem);
+  font-weight: 700;
+  color: var(--text);
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  line-height: 1.3;
 }
+.tab-content__body { font-size: 1rem; color: var(--text-secondary); line-height: 1.75; }
+.tab-content__illustration { display: flex; align-items: center; justify-content: center; }
+.tab-content__illustration svg { width: 100%; max-width: 260px; height: auto; }
 
-/* 72px icon container */
+/* Pillar icon styles — reused inside tab panels */
 .pillar__icon {
-  width: 72px;
-  height: 72px;
-  border-radius: 16px;
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 1.5rem;
-  transition: transform 0.35s var(--ease-back);
+  margin-bottom: 0.75rem;
 }
-.pillar:hover .pillar__icon {
-  transform: scale(1.06);
-}
-
 .pillar__icon--blue  { background: rgba(66,133,244,0.10); }
 .pillar__icon--red   { background: rgba(234,67,53,0.09);  }
 .pillar__icon--green { background: rgba(52,168,83,0.09);  }
 
-.pillar__title {
-  font-size: 1.125rem;
-  font-weight: 700;
-  color: var(--text);
-  margin-bottom: 0.75rem;
-}
-.pillar__text {
-  font-size: 0.9375rem;
-  color: var(--text-secondary);
-  line-height: 1.7;
-}
-
 /* ==========================================================================
-   14. SECTION — WHY TRINITY
+   14. SECTION — WHY TRINITY (Bento Grid)
    ========================================================================== */
-.why__grid {
+.bento-grid {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.25rem;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
 }
+.bento-card--wide { grid-column: span 2; }
+.bento-card--tall { grid-row: span 2; }
+.bento-card--full { grid-column: 1 / -1; }
 
-.why-card {
-  --card-accent: var(--blue);
+.bento-card {
+  --bc-color: var(--blue);
   background: var(--white);
-  border-radius: 20px;
-  padding: 2rem 2.25rem;
-  box-shadow:
-    inset 5px 0 0 var(--card-accent),
-    0 1px 2px rgba(0,0,0,0.04),
-    0 4px 12px rgba(0,0,0,0.05),
-    0 12px 36px rgba(0,0,0,0.03);
+  border-radius: 24px;
+  padding: 36px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.05), 0 12px 36px rgba(0,0,0,0.03);
   display: flex;
-  gap: 1.5rem;
-  align-items: flex-start;
-  transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease);
+  flex-direction: column;
+  gap: 1rem;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease), background 0.35s var(--ease);
   will-change: transform;
 }
-.why-card:hover {
+.bento-card:hover {
   transform: translateY(-6px);
-  box-shadow:
-    inset 8px 0 0 var(--card-accent),
-    0 4px 8px rgba(0,0,0,0.05),
-    0 16px 40px rgba(0,0,0,0.09),
-    0 40px 80px rgba(0,0,0,0.05);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05), 0 16px 40px rgba(0,0,0,0.10), 0 40px 80px rgba(0,0,0,0.05);
 }
-.why-card:hover .badge { transform: scale(1.05); }
+.bento-card--blue   { --bc-color: var(--blue);   }
+.bento-card--red    { --bc-color: var(--red);     }
+.bento-card--yellow { --bc-color: var(--yellow);  }
+.bento-card--green  { --bc-color: var(--green);   }
+.bento-card--blue:hover   { background: rgba(66,133,244,0.03); }
+.bento-card--red:hover    { background: rgba(234,67,53,0.03);  }
+.bento-card--yellow:hover { background: rgba(251,188,5,0.04);  }
+.bento-card--green:hover  { background: rgba(52,168,83,0.03);  }
 
-.why-card--blue   { --card-accent: var(--blue);   }
-.why-card--red    { --card-accent: var(--red);     }
-.why-card--yellow { --card-accent: var(--yellow);  }
-.why-card--green  { --card-accent: var(--green);   }
-
-.why-card__icon {
-  width: 48px;
-  height: 48px;
-  border-radius: 12px;
+.bento-card__icon {
+  width: 64px; height: 64px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
   flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  transition: transform 0.35s var(--ease-back);
 }
-.why-card__icon--blue   { background: rgba(66,133,244,0.10);  }
-.why-card__icon--red    { background: rgba(234,67,53,0.10);   }
-.why-card__icon--yellow { background: rgba(251,188,5,0.12);   }
-.why-card__icon--green  { background: rgba(52,168,83,0.10);   }
+.bento-card:hover .bento-card__icon { transform: scale(1.08) rotate(-4deg); }
+.bento-card__icon--blue   { background: rgba(66,133,244,0.10);  }
+.bento-card__icon--red    { background: rgba(234,67,53,0.10);   }
+.bento-card__icon--yellow { background: rgba(251,188,5,0.12);   }
+.bento-card__icon--green  { background: rgba(52,168,83,0.10);   }
 
-.why-card__title {
-  font-size: 1.0625rem;
-  font-weight: 700;
-  color: var(--text);
-  margin-bottom: 0.375rem;
-  display: flex;
-  align-items: center;
-  gap: 0.625rem;
-  flex-wrap: wrap;
+/* Horizontal layout for wide/full blocs */
+.bento-card--horizontal { flex-direction: row; align-items: center; gap: 2rem; }
+.bento-card--horizontal .bento-card__body { flex: 1; }
+
+/* Large decorative number for Track record bloc */
+.bento-card__bg-num {
+  position: absolute; bottom: -1.5rem; right: 0.5rem;
+  font-size: 9rem; font-weight: 900; line-height: 1; letter-spacing: -0.06em;
+  color: var(--red); opacity: 0.06;
+  pointer-events: none; user-select: none;
 }
-.why-card__text {
-  font-size: 0.9375rem;
-  color: var(--text-secondary);
-  line-height: 1.65;
+
+/* Garantie bloc — subtle green gradient highlight */
+.bento-card--highlight { background: linear-gradient(135deg, rgba(52,168,83,0.04) 0%, #FFFFFF 60%); }
+.bento-card--highlight:hover { background: linear-gradient(135deg, rgba(52,168,83,0.07) 0%, rgba(52,168,83,0.02) 100%); }
+
+.bento-card__title {
+  font-size: 1.0625rem; font-weight: 700; color: var(--text);
+  display: flex; align-items: center; gap: 0.625rem; flex-wrap: wrap; line-height: 1.35;
 }
+.bento-card__text { font-size: 0.9375rem; color: var(--text-secondary); line-height: 1.65; }
 
 /* ==========================================================================
    15. SECTION — PROCESS / TIMELINE
@@ -1222,16 +1217,6 @@ section {
   .nav__links    { display: flex; }
   .nav__hamburger { display: none; }
 
-  /* Problem cards: 2 × 2 */
-  .problem__grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  /* Solution pillars: 3 col */
-  .solution__pillars {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
   /* Footer row */
   .footer__inner {
     flex-direction: row;
@@ -1242,11 +1227,6 @@ section {
 
 /* lg ≥ 768px — timeline desktop mode */
 @media (min-width: 768px) {
-  /* Why Trinity 2-col */
-  .why__grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
   /* Case study cards 3-col */
   .cases-grid {
     grid-template-columns: repeat(3, 1fr);
@@ -1270,11 +1250,30 @@ section {
   }
 }
 
-/* xl ≥ 1024px */
-@media (min-width: 1024px) {
-  .why__grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
+/* Accordion + tabs + bento mobile breakpoints — added below section 19 */
+@media (max-width: 767px) {
+  /* Accordion: 1 col, no sticky */
+  .problem__layout { flex-direction: column; gap: 2.5rem; }
+  .problem__sticky { width: 100%; position: static; text-align: center; }
+  .problem__sticky .section-title,
+  .problem__sticky .section-subtitle { text-align: center; margin-inline: auto; }
+  .acc-item__body p { padding-left: 2.75rem; }
+
+  /* Tabs: scroll horizontal, 1-col panel, no illustration */
+  .tabs { overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; max-width: 100%; }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tab-btn { flex-shrink: 0; font-size: 0.85rem; padding: 12px 16px; }
+  .tab-content__layout { grid-template-columns: 1fr; }
+  .tab-content__illustration { display: none; }
+  .tabs__panel { min-height: auto; }
+
+  /* Bento: 1 col */
+  .bento-grid { grid-template-columns: 1fr; gap: 16px; }
+  .bento-card--wide, .bento-card--tall, .bento-card--full { grid-column: auto; grid-row: auto; }
+  .bento-card--horizontal { flex-direction: column; gap: 1rem; }
+  .bento-card { padding: 28px 24px; }
+  .bento-card__bg-num { font-size: 6rem; }
+  .bento-card:hover { transform: none; }
 }
 
 /* ==========================================================================
@@ -1403,16 +1402,13 @@ section {
 }
 
 /* ==========================================================================
-   23. PILLAR & GRID GAP IMPROVEMENTS
+   23. GRID GAP IMPROVEMENTS
    ========================================================================== */
-.solution__pillars {
-  gap: 2rem;
-}
 .cases-grid {
   gap: 2rem;
 }
-.why__grid {
-  gap: 1.5rem;
+.bento-grid {
+  gap: 20px;
 }
 
 /* ==========================================================================
@@ -1432,7 +1428,7 @@ section {
   40%  { transform: scale(1.08); }
   100% { transform: scale(1); }
 }
-.why-card.is-visible .badge {
+.bento-card.is-visible .badge {
   animation: badgeHighlight 0.6s var(--ease-back) 0.4s both;
 }
 
@@ -1456,22 +1452,15 @@ section {
     transition-delay: calc(var(--delay, 0) * 0.06s);
   }
   /* Gap tweaks on mobile */
-  .problem__grid { gap: 1.25rem; }
-  .why__grid     { gap: 1rem; }
-  .cases-grid    { gap: 1.25rem; }
+  .cases-grid { gap: 1.25rem; }
 
   /* Simplify card hover on mobile — no translateY on touch devices */
-  .pain-card:hover,
-  .why-card:hover,
   .case-card:hover { transform: none; }
 
   /* Reduce padding on mobile */
-  .pain-card  { padding: 28px 24px; }
-  .why-card   { padding: 1.5rem 1.25rem; }
   .case-card  { padding: 1.75rem 1.5rem; }
 
   /* Inset border stays legible at mobile size */
-  .why-card:hover { box-shadow: inset 5px 0 0 var(--card-accent), 0 4px 12px rgba(0,0,0,0.07); }
   .case-card:hover { box-shadow: inset 0 6px 0 var(--cc-color), 0 4px 12px rgba(0,0,0,0.07); }
 
   /* Smaller result block on mobile */

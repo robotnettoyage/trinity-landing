@@ -215,6 +215,67 @@
   });
 
   /* ==========================================================================
+     8. ACCORDION — Problem section
+     ========================================================================== */
+  var accItems = document.querySelectorAll('.acc-item');
+
+  accItems.forEach(function (item) {
+    var trigger = item.querySelector('.acc-item__trigger');
+    if (!trigger) return;
+
+    trigger.addEventListener('click', function () {
+      var isOpen = item.classList.contains('is-open');
+
+      // Close all items
+      accItems.forEach(function (i) {
+        i.classList.remove('is-open');
+        i.querySelector('.acc-item__trigger').setAttribute('aria-expanded', 'false');
+      });
+
+      // Open clicked item if it was closed
+      if (!isOpen) {
+        item.classList.add('is-open');
+        trigger.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+
+  /* ==========================================================================
+     9. TABS — Solution section
+     ========================================================================== */
+  var tabBtns     = document.querySelectorAll('.tab-btn');
+  var tabContents = document.querySelectorAll('.tab-content');
+
+  tabBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var target = btn.dataset.tab;
+
+      // Update tab buttons
+      tabBtns.forEach(function (b) {
+        b.classList.remove('tab-btn--active');
+        b.setAttribute('aria-selected', 'false');
+      });
+      btn.classList.add('tab-btn--active');
+      btn.setAttribute('aria-selected', 'true');
+
+      // Fade out all panels
+      tabContents.forEach(function (c) { c.classList.remove('is-active'); });
+
+      // Fade in target panel
+      var newPanel = document.getElementById('tab-panel-' + target);
+      if (newPanel) {
+        newPanel.removeAttribute('hidden');
+        void newPanel.offsetHeight; // force reflow so opacity transition fires
+        newPanel.classList.add('is-active');
+        // Re-hide the others after they fade out
+        tabContents.forEach(function (c) {
+          if (c !== newPanel) { c.setAttribute('hidden', ''); }
+        });
+      }
+    });
+  });
+
+  /* ==========================================================================
      6. HERO TITLE — slight parallax on mouse move (desktop only)
      Subtle, elegant — not a gimmick. Disabled on touch devices.
      ========================================================================== */
