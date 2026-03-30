@@ -131,7 +131,75 @@
   });
 
   /* ==========================================================================
-     5. SMOOTH SCROLL — polite fallback for browsers without CSS scroll-behavior
+     5. TIMELINE — line draw + dot pop on scroll
+     ========================================================================== */
+  const timeline = document.querySelector('.timeline');
+
+  if (timeline) {
+    // Observe the timeline container → draw the gradient line
+    const lineObserver = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('line-visible');
+            lineObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+    lineObserver.observe(timeline);
+
+    // Observe each step → pop its dot when visible
+    const dotObserver = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            const dot = entry.target.querySelector('.timeline__dot');
+            if (dot) {
+              // Small delay so line has time to reach the dot's position
+              const stepIndex = Array.from(timeline.querySelectorAll('.timeline__step')).indexOf(entry.target);
+              setTimeout(function () {
+                dot.classList.add('is-popped');
+              }, 200 + stepIndex * 250);
+            }
+            dotObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.4 }
+    );
+    timeline.querySelectorAll('.timeline__step').forEach(function (step) {
+      dotObserver.observe(step);
+    });
+  }
+
+  /* ==========================================================================
+     6. BLOB PARALLAX — blobs move at 0.35× scroll speed (desktop only)
+     ========================================================================== */
+  if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    var ticking = false;
+
+    function updateBlobs() {
+      var scrollY = window.scrollY;
+      document.querySelectorAll('.blob').forEach(function (blob, i) {
+        // Alternate direction for visual variety
+        var factor = i % 2 === 0 ? -0.30 : 0.22;
+        blob.style.setProperty('--parallax-y', (scrollY * factor) + 'px');
+      });
+      ticking = false;
+    }
+
+    window.addEventListener('scroll', function () {
+      if (!ticking) {
+        requestAnimationFrame(updateBlobs);
+        ticking = true;
+      }
+    }, { passive: true });
+  }
+
+  /* ==========================================================================
+     7. SMOOTH SCROLL — polite fallback for browsers without CSS scroll-behavior
      ========================================================================== */
   document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
     anchor.addEventListener('click', function (e) {
