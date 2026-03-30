@@ -258,11 +258,14 @@ section {
   display: inline-flex;
   align-items: center;
   gap: 0.3rem;
-  padding: 0.3rem 0.75rem;
+  padding: 0.375rem 1rem;
   border-radius: 100px;
-  font-size: 0.8125rem;
-  font-weight: 600;
+  font-size: 0.75rem;
+  font-weight: 700;
   line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: transform 0.3s var(--ease-back);
 }
 .badge--blue   { background: rgba(66,133,244,0.10);  color: var(--blue);   }
 .badge--red    { background: rgba(234,67,53,0.10);   color: var(--red);    }
@@ -557,13 +560,79 @@ section {
 .proof-sep { color: var(--border); margin-inline: 0.25rem; }
 
 /* ==========================================================================
-   12. SECTION — PROBLEM
+   12. SECTION — PROBLEM · Pain cards (Glassmorphism)
    ========================================================================== */
 .problem__grid {
   display: grid;
   grid-template-columns: 1fr;
   gap: 2rem;
 }
+
+/* ---- Pain card base ---- */
+.pain-card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.58);
+  border-radius: 24px;
+  padding: 40px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.07), 0 1px 2px rgba(0,0,0,0.04);
+  transition:
+    transform    0.4s var(--ease),
+    box-shadow   0.4s var(--ease),
+    background   0.4s var(--ease);
+  will-change: transform;
+  overflow: hidden;
+}
+.pain-card:hover {
+  transform: translateY(-10px);
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow:
+    0 16px 48px rgba(0,0,0,0.11),
+    0 4px 12px rgba(0,0,0,0.06),
+    0 1px 2px rgba(0,0,0,0.04);
+}
+
+/* ---- Glow dot — top right ---- */
+.pain-card__dot {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  transition: transform 0.4s var(--ease-back);
+  z-index: 1;
+}
+.pain-card:hover .pain-card__dot {
+  transform: scale(1.5);
+}
+
+.pain-card--blue  .pain-card__dot { background: var(--blue);   box-shadow: 0 0 14px rgba(66,133,244,0.50);  }
+.pain-card--red   .pain-card__dot { background: var(--red);    box-shadow: 0 0 14px rgba(234,67,53,0.50);   }
+.pain-card--yellow .pain-card__dot{ background: var(--yellow); box-shadow: 0 0 14px rgba(251,188,5,0.55);   }
+.pain-card--green .pain-card__dot { background: var(--green);  box-shadow: 0 0 14px rgba(52,168,83,0.50);   }
+
+/* ---- 64px circle icon ---- */
+.pain-card__icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  transition: transform 0.4s var(--ease-back);
+}
+.pain-card:hover .pain-card__icon {
+  transform: scale(1.08) rotate(-4deg);
+}
+
+.pain-card--blue   .pain-card__icon { background: linear-gradient(135deg, rgba(66,133,244,0.10), rgba(66,133,244,0.22));  }
+.pain-card--red    .pain-card__icon { background: linear-gradient(135deg, rgba(234,67,53,0.10),  rgba(234,67,53,0.22));   }
+.pain-card--yellow .pain-card__icon { background: linear-gradient(135deg, rgba(251,188,5,0.12),  rgba(251,188,5,0.26));   }
+.pain-card--green  .pain-card__icon { background: linear-gradient(135deg, rgba(52,168,83,0.10),  rgba(52,168,83,0.22));   }
 
 /* ==========================================================================
    13. SECTION — SOLUTION
@@ -586,39 +655,91 @@ section {
 .solution__pillars {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 1.5rem;
+  gap: 2rem;
 }
 
+/* ---- Pillar — gradient border bottom + decorative number ---- */
 .pillar {
-  background: var(--gray-light);
-  border-radius: var(--radius-md);
-  padding: 2.25rem 2rem;
-  border-bottom: 3px solid transparent;
-  transition: transform var(--transition), box-shadow var(--transition);
+  background: var(--white);
+  border-radius: 20px;
+  padding: 48px 36px 44px;
+  border-bottom: none;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.05), 0 1px 3px rgba(0,0,0,0.04);
+  transition:
+    transform    0.35s var(--ease),
+    box-shadow   0.35s var(--ease);
+  will-change: transform;
 }
-.pillar--blue  { border-bottom-color: var(--blue);  }
-.pillar--red   { border-bottom-color: var(--red);   }
-.pillar--green { border-bottom-color: var(--green); }
-.pillar:hover  { transform: translateY(-4px); box-shadow: var(--shadow-md); }
 
+/* Gradient bottom bar via ::after — all 4 colors */
+.pillar::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--blue), var(--red), var(--yellow), var(--green));
+  border-radius: 0 0 20px 20px;
+  transition: height 0.35s var(--ease);
+}
+
+.pillar:hover {
+  transform: translateY(-6px);
+  box-shadow:
+    0 12px 40px rgba(0,0,0,0.09),
+    0 4px 12px rgba(0,0,0,0.05),
+    0 1px 3px rgba(0,0,0,0.03);
+}
+.pillar:hover::after {
+  height: 5px;
+}
+
+/* Decorative background number */
+.pillar__num {
+  position: absolute;
+  top: -0.5rem;
+  right: 1.25rem;
+  font-size: 5rem;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.06em;
+  color: var(--text);
+  opacity: 0.055;
+  pointer-events: none;
+  user-select: none;
+  transition: opacity 0.35s var(--ease);
+}
+.pillar:hover .pillar__num {
+  opacity: 0.08;
+}
+
+/* 72px icon container */
 .pillar__icon {
-  width: 52px;
-  height: 52px;
-  border-radius: 12px;
+  width: 72px;
+  height: 72px;
+  border-radius: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 1.375rem;
+  margin-bottom: 1.5rem;
+  transition: transform 0.35s var(--ease-back);
 }
-.pillar__icon--blue  { background: rgba(66,133,244,0.12); }
-.pillar__icon--red   { background: rgba(234,67,53,0.10);  }
-.pillar__icon--green { background: rgba(52,168,83,0.10);  }
+.pillar:hover .pillar__icon {
+  transform: scale(1.06);
+}
+
+.pillar__icon--blue  { background: rgba(66,133,244,0.10); }
+.pillar__icon--red   { background: rgba(234,67,53,0.09);  }
+.pillar__icon--green { background: rgba(52,168,83,0.09);  }
 
 .pillar__title {
   font-size: 1.125rem;
   font-weight: 700;
   color: var(--text);
-  margin-bottom: 0.625rem;
+  margin-bottom: 0.75rem;
 }
 .pillar__text {
   font-size: 0.9375rem;
@@ -636,19 +757,35 @@ section {
 }
 
 .why-card {
+  --card-accent: var(--blue);
   background: var(--white);
   border-radius: 20px;
   padding: 2rem 2.25rem;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.05), 0 12px 36px rgba(0,0,0,0.03);
+  box-shadow:
+    inset 5px 0 0 var(--card-accent),
+    0 1px 2px rgba(0,0,0,0.04),
+    0 4px 12px rgba(0,0,0,0.05),
+    0 12px 36px rgba(0,0,0,0.03);
   display: flex;
   gap: 1.5rem;
   align-items: flex-start;
   transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease);
+  will-change: transform;
 }
 .why-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 4px 8px rgba(0,0,0,0.05), 0 16px 40px rgba(0,0,0,0.09), 0 40px 80px rgba(0,0,0,0.05);
+  box-shadow:
+    inset 8px 0 0 var(--card-accent),
+    0 4px 8px rgba(0,0,0,0.05),
+    0 16px 40px rgba(0,0,0,0.09),
+    0 40px 80px rgba(0,0,0,0.05);
 }
+.why-card:hover .badge { transform: scale(1.05); }
+
+.why-card--blue   { --card-accent: var(--blue);   }
+.why-card--red    { --card-accent: var(--red);     }
+.why-card--yellow { --card-accent: var(--yellow);  }
+.why-card--green  { --card-accent: var(--green);   }
 
 .why-card__icon {
   width: 48px;
@@ -877,23 +1014,32 @@ section {
 }
 
 .case-card {
+  --cc-color: var(--blue);
   background: var(--white);
   border-radius: 20px;
   padding: 2.25rem 2.5rem;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.06), 0 12px 36px rgba(0,0,0,0.04);
-  border-top: 3px solid transparent;
+  box-shadow:
+    inset 0 6px 0 var(--cc-color),
+    0 1px 2px rgba(0,0,0,0.04),
+    0 4px 12px rgba(0,0,0,0.06),
+    0 12px 36px rgba(0,0,0,0.04);
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
-  transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease);
+  transition: transform 0.4s var(--ease-back), box-shadow 0.4s var(--ease-back);
+  will-change: transform;
 }
 .case-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 4px 8px rgba(0,0,0,0.05), 0 20px 48px rgba(0,0,0,0.12), 0 48px 96px rgba(0,0,0,0.06);
+  transform: translateY(-12px);
+  box-shadow:
+    inset 0 10px 0 var(--cc-color),
+    0 4px 8px rgba(0,0,0,0.05),
+    0 20px 48px rgba(0,0,0,0.12),
+    0 48px 96px rgba(0,0,0,0.06);
 }
-.case-card--blue  { border-top-color: var(--blue);  }
-.case-card--red   { border-top-color: var(--red);   }
-.case-card--green { border-top-color: var(--green); }
+.case-card--blue  { --cc-color: var(--blue);  }
+.case-card--red   { --cc-color: var(--red);   }
+.case-card--green { --cc-color: var(--green); }
 
 .case-card__header {
   display: flex;
@@ -902,20 +1048,20 @@ section {
   gap: 0.75rem;
 }
 .case-card__avatar {
-  width: 44px;
-  height: 44px;
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 700;
-  font-size: 0.875rem;
+  font-size: 0.9375rem;
   color: var(--white);
   flex-shrink: 0;
 }
-.case-card__avatar--blue  { background: var(--blue);  }
-.case-card__avatar--red   { background: var(--red);   }
-.case-card__avatar--green { background: var(--green); }
+.case-card__avatar--blue  { background: linear-gradient(135deg, #4285F4, #34A853); }
+.case-card__avatar--red   { background: linear-gradient(135deg, #EA4335, #FBBC05); }
+.case-card__avatar--green { background: linear-gradient(135deg, #34A853, #4285F4); }
 
 .case-card__name {
   font-weight: 600;
@@ -939,18 +1085,24 @@ section {
 }
 .case-card__line strong { color: var(--text); font-weight: 600; }
 
-.case-card__result {
-  font-size: 1.375rem;
+.case-card__result-block {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  border-radius: 12px;
+  padding: 0.875rem 1.25rem;
+  font-size: 1.125rem;
   font-weight: 800;
-  color: var(--text);
   letter-spacing: -0.02em;
   line-height: 1.3;
   margin-top: 0.25rem;
-  transition: color var(--transition-fast);
+  transition: transform 0.35s var(--ease-back), background 0.35s var(--ease);
+  color: var(--cc-color);
 }
-.case-card:hover .case-card__result {
-  color: var(--green);
-}
+.case-card__result-block--blue  { background: rgba(66,133,244,0.08);  color: var(--blue);  }
+.case-card__result-block--red   { background: rgba(234,67,53,0.08);   color: var(--red);   }
+.case-card__result-block--green { background: rgba(52,168,83,0.08);   color: var(--green); }
+.case-card:hover .case-card__result-block { transform: translateX(4px); }
 
 /* ==========================================================================
    17. SECTION — CTA FINAL
@@ -1307,4 +1459,21 @@ section {
   .problem__grid { gap: 1.25rem; }
   .why__grid     { gap: 1rem; }
   .cases-grid    { gap: 1.25rem; }
+
+  /* Simplify card hover on mobile — no translateY on touch devices */
+  .pain-card:hover,
+  .why-card:hover,
+  .case-card:hover { transform: none; }
+
+  /* Reduce padding on mobile */
+  .pain-card  { padding: 28px 24px; }
+  .why-card   { padding: 1.5rem 1.25rem; }
+  .case-card  { padding: 1.75rem 1.5rem; }
+
+  /* Inset border stays legible at mobile size */
+  .why-card:hover { box-shadow: inset 5px 0 0 var(--card-accent), 0 4px 12px rgba(0,0,0,0.07); }
+  .case-card:hover { box-shadow: inset 0 6px 0 var(--cc-color), 0 4px 12px rgba(0,0,0,0.07); }
+
+  /* Smaller result block on mobile */
+  .case-card__result-block { font-size: 1rem; padding: 0.75rem 1rem; }
 }
