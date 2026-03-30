@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Trinity — Le partenaire de croissance des business de services B2B. Systèmes d'acquisition et de conversion 100% organiques boostés à l'IA. Garanti par résultat." />
+  <title>Trinity — Partenaire de croissance B2B</title>
+
+  <!-- Performance: preconnect for Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ====================================================================
+       NAV — sticky, white, Trinity logo + desktop links + CTA
+       ==================================================================== -->
+  <header class="nav" id="nav" role="banner">
+    <div class="nav__inner">
+
+      <!-- Logo: wordmark + blue dot accent -->
+      <a class="nav__logo" href="#hero" aria-label="Trinity — Accueil">
+        Trinity<span class="nav__logo-dot" aria-hidden="true">.</span>
+      </a>
+
+      <!-- Desktop navigation links -->
+      <nav class="nav__links" aria-label="Navigation principale">
+        <a href="#solution">Solution</a>
+        <a href="#process">Processus</a>
+        <a href="#proof">Résultats</a>
+      </nav>
+
+      <!-- Desktop CTA -->
+      <a class="btn btn--red" href="#cta">Réserver un appel</a>
+
+      <!-- Hamburger (mobile only) -->
+      <button
+        class="nav__hamburger"
+        id="nav-hamburger"
+        aria-label="Ouvrir le menu"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+
+    <!-- Mobile menu drawer -->
+    <div class="nav__mobile" id="mobile-menu" role="navigation" aria-label="Menu mobile">
+      <a href="#solution">Solution</a>
+      <a href="#process">Processus</a>
+      <a href="#proof">Résultats</a>
+      <a class="btn btn--red" href="#cta">Réserver un appel</a>
+    </div>
+  </header>
+
+
+  <!-- ====================================================================
+       HERO — 100vh, centré, titre display, 2 CTAs, social proof
+       ==================================================================== -->
+  <section class="hero" id="hero" aria-labelledby="hero-title">
+    <div class="hero__inner container">
+
+      <!-- Main heading — "croissance" has SVG animated underline in blue -->
+      <h1 class="hero__title animate-child" style="--delay:0" id="hero-title">
+        Le partenaire de&nbsp;<span class="hero__title-highlight">croissance
+          <!-- SVG underline draws itself on load via stroke-dashoffset animation -->
+          <svg class="hero__underline" viewBox="0 0 340 16" aria-hidden="true" preserveAspectRatio="none" focusable="false">
+            <path
+              d="M6 10 C85 2, 255 2, 334 10"
+              stroke="#4285F4"
+              stroke-width="3.5"
+              fill="none"
+              stroke-linecap="round"
+            />
+          </svg>
+        </span><br>des business de services B2B
+      </h1>
+
+      <!-- Subtitle -->
+      <p class="hero__subtitle animate-child" style="--delay:1">
+        Vous êtes bloqué entre 150K et 300K€/an&nbsp;? On implémente les systèmes
+        d'acquisition et de conversion 100% organiques boostés à l'IA pour vous
+        faire scaler à <strong>500K–1M€</strong> et au-delà.
+      </p>
+
+      <!-- Dual CTA -->
+      <div class="hero__ctas animate-child" style="--delay:2">
+        <a class="btn btn--red btn--lg" href="#cta">Réserver un appel stratégique</a>
+        <a class="btn btn--outline-blue btn--lg" href="#solution">Découvrir la méthode</a>
+      </div>
+
+      <!-- Social proof strip: coloured dots + text -->
+      <div class="hero__proof animate-child" style="--delay:3" aria-label="Preuve sociale">
+        <div class="proof-dots" aria-hidden="true">
+          <span class="proof-dot proof-dot--blue"></span>
+          <span class="proof-dot proof-dot--red"></span>
+          <span class="proof-dot proof-dot--yellow"></span>
+          <span class="proof-dot proof-dot--green"></span>
+        </div>
+        <p class="proof-text">
+          <strong>+47 entrepreneurs accompagnés</strong>
+          <span class="proof-sep" aria-hidden="true">·</span>
+          8 chiffres de CA généré
+          <span class="proof-sep" aria-hidden="true">·</span>
+          Garanti par résultat
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ====================================================================
+       PROBLEM — Sand bg · 4 pain-point cards (2×2 grid)
+       ==================================================================== -->
+  <section class="problem section--sand" id="problem" aria-labelledby="problem-title">
+
+    <!-- Wave top: white flows over the sand top edge -->
+    <div class="wave-top" aria-hidden="true">
+      <svg viewBox="0 0 1440 90" preserveAspectRatio="none" focusable="false">
+        <path d="M0,0 C240,88 600,88 720,44 C840,0 1200,0 1440,0 L1440,0 L0,0 Z" fill="#FFFFFF"/>
+      </svg>
+    </div>
+
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title animate-child" style="--delay:0" id="problem-title">
+          Vous <span class="text-yellow">reconnaissez</span>-vous&nbsp;?
+        </h2>
+        <p class="section-subtitle animate-child" style="--delay:1">
+          Les mêmes blocages reviennent chaque semaine. Si vous vous retrouvez dans l'un de ces profils, Trinity est fait pour vous.
+        </p>
+      </div>
+
+      <div class="problem__grid">
+
+        <!-- Card 1 — Blue accent -->
+        <div class="card card--border-blue animate-child" style="--delay:0">
+          <div class="card__icon card__icon--blue" aria-hidden="true">
+            <!-- Icon: person blocked by a wall -->
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4285F4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="7" r="4"/>
+              <path d="M5.5 21a8.38 8.38 0 0 1 13 0"/>
+              <line x1="19" y1="10" x2="19" y2="14"/>
+              <line x1="17" y1="12" x2="21" y2="12"/>
+            </svg>
+          </div>
+          <h3 class="card__title">Vous êtes le goulot d'étranglement de votre business</h3>
+          <p class="card__text">Tout repose sur vous. Impossible de déléguer sans perdre en qualité — votre croissance est plafonnée par votre propre capacité.</p>
+        </div>
+
+        <!-- Card 2 — Red accent -->
+        <div class="card card--border-red animate-child" style="--delay:1">
+          <div class="card__icon card__icon--red" aria-hidden="true">
+            <!-- Icon: clock / time -->
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#EA4335" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <polyline points="12 6 12 12 16 14"/>
+            </svg>
+          </div>
+          <h3 class="card__title">Pas le temps de construire des systèmes d'acquisition</h3>
+          <p class="card__text">Vous savez que c'est nécessaire mais chaque jour passe sans avancer. Le quotidien opérationnel absorbe tout.</p>
+        </div>
+
+        <!-- Card 3 — Yellow accent -->
+        <div class="card card--border-yellow animate-child" style="--delay:2">
+          <div class="card__icon card__icon--yellow" aria-hidden="true">
+            <!-- Icon: network / word of mouth -->
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FBBC05" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="18" cy="5" r="3"/>
+              <circle cx="6" cy="12" r="3"/>
+              <circle cx="18" cy="19" r="3"/>
+              <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+              <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+            </svg>
+          </div>
+          <h3 class="card__title">Vous dépendez du bouche-à-oreille</h3>
+          <p class="card__text">Vos revenus sont imprévisibles, vous n'avez aucun contrôle sur votre pipeline. Un mois excellent, le suivant inquiétant.</p>
+        </div>
+
+        <!-- Card 4 — Green accent -->
+        <div class="card card--border-green animate-child" style="--delay:3">
+          <div class="card__icon card__icon--green" aria-hidden="true">
+            <!-- Icon: money / hire cost -->
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#34A853" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="5" width="20" height="14" rx="2"/>
+              <line x1="2" y1="10" x2="22" y2="10"/>
+            </svg>
+          </div>
+          <h3 class="card__title">Recruter coûte trop cher pour un ROI incertain</h3>
+          <p class="card__text">Un Head of Marketing à 60–80K€/an pour un résultat hypothétique, c'est un pari risqué que peu de PME peuvent se permettre.</p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Wave bottom: white flows up from the next white section -->
+    <div class="wave-bottom" aria-hidden="true">
+      <svg viewBox="0 0 1440 90" preserveAspectRatio="none" focusable="false">
+        <path d="M0,90 C360,2 1080,2 1440,90 L1440,90 L0,90 Z" fill="#FFFFFF"/>
+      </svg>
+    </div>
+
+  </section>
+
+
+  <!-- ====================================================================
+       SOLUTION — White bg · 3 piliers visuels
+       ==================================================================== -->
+  <section class="solution" id="solution" aria-labelledby="solution-title">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title animate-child" style="--delay:0" id="solution-title">
+          Des systèmes organiques éprouvés,<br>
+          optimisés et <span class="text-blue">boostés à l'IA</span>
+        </h2>
+        <p class="solution__intro animate-child" style="--delay:1">
+          Pas de publicité payante. Pas de hacks à court terme. On conçoit et déploie des
+          infrastructures de croissance qui génèrent des leads qualifiés durablement —
+          en combinant contenu organique, IA et systèmes de conversion optimisés.
+        </p>
+      </div>
+
+      <div class="solution__pillars">
+
+        <!-- Pillar 1 — Blue: Acquisition -->
+        <div class="pillar pillar--blue animate-child" style="--delay:0">
+          <div class="pillar__icon pillar__icon--blue" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#4285F4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+            </svg>
+          </div>
+          <h3 class="pillar__title">Acquisition organique automatisée</h3>
+          <p class="pillar__text">Stratégie de contenu LinkedIn, SEO et personal branding conçue pour attirer vos prospects idéaux — sans dépenser un centime en ads.</p>
+        </div>
+
+        <!-- Pillar 2 — Red: Conversion -->
+        <div class="pillar pillar--red animate-child" style="--delay:1">
+          <div class="pillar__icon pillar__icon--red" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#EA4335" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+              <polyline points="22 4 12 14.01 9 11.01"/>
+            </svg>
+          </div>
+          <h3 class="pillar__title">Systèmes de conversion optimisés</h3>
+          <p class="pillar__text">Tunnels de vente, scripts d'appel, séquences de nurturing — chaque point de contact est optimisé pour transformer les leads en clients.</p>
+        </div>
+
+        <!-- Pillar 3 — Green: IA -->
+        <div class="pillar pillar--green animate-child" style="--delay:2">
+          <div class="pillar__icon pillar__icon--green" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#34A853" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="7" height="7" rx="1"/>
+              <rect x="14" y="3" width="7" height="7" rx="1"/>
+              <rect x="14" y="14" width="7" height="7" rx="1"/>
+              <path d="M3 17h4m-2-2v4M6.5 10.5L10 14"/>
+            </svg>
+          </div>
+          <h3 class="pillar__title">Intelligence artificielle intégrée</h3>
+          <p class="pillar__text">L'IA multiplie la vitesse d'exécution par 5 : production de contenu, analyse de données, personnalisation des messages. Vous scalez sans recruter.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ====================================================================
+       WHY TRINITY — Sand bg · 5 différenciateurs
+       ==================================================================== -->
+  <section class="why-trinity section--sand" id="why" aria-labelledby="why-title">
+
+    <!-- Wave top — asymétrique -->
+    <div class="wave-top" aria-hidden="true">
+      <svg viewBox="0 0 1440 90" preserveAspectRatio="none" focusable="false">
+        <path d="M0,0 C480,90 960,0 1440,60 L1440,0 L0,0 Z" fill="#FFFFFF"/>
+      </svg>
+    </div>
+
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title animate-child" style="--delay:0" id="why-title">
+          Pourquoi choisir <span class="text-blue">Trinity</span>&nbsp;?
+        </h2>
+        <p class="section-subtitle animate-child" style="--delay:1">
+          Une expertise terrain unique combinée à des méthodes éprouvées — pour des résultats mesurables, pas des promesses.
+        </p>
+      </div>
+
+      <div class="why__grid">
+
+        <!-- 1 — Blue: expérience terrain -->
+        <div class="why-card animate-child" style="--delay:0">
+          <div class="why-card__icon why-card__icon--blue" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4285F4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 3h7v7H3z"/>
+              <path d="M14 3h7v7h-7z"/>
+              <path d="M14 14h7v7h-7z"/>
+              <path d="M3 14h7v7H3z"/>
+            </svg>
+          </div>
+          <div class="why-card__body">
+            <h3 class="why-card__title">
+              Expérience terrain réelle
+              <span class="badge badge--blue">Depuis 2022</span>
+            </h3>
+            <p class="why-card__text">Entrepreneur ayant généré 7 chiffres en organique depuis 2022. On ne vous vend pas de la théorie — on déploie ce qui fonctionne dans la vraie vie.</p>
+          </div>
+        </div>
+
+        <!-- 2 — Red: track record -->
+        <div class="why-card animate-child" style="--delay:1">
+          <div class="why-card__icon why-card__icon--red" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#EA4335" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="20" x2="18" y2="10"/>
+              <line x1="12" y1="20" x2="12" y2="4"/>
+              <line x1="6" y1="20" x2="6" y2="14"/>
+            </svg>
+          </div>
+          <div class="why-card__body">
+            <h3 class="why-card__title">
+              Track record solide
+              <span class="badge badge--red">8 chiffres</span>
+            </h3>
+            <p class="why-card__text">Des dizaines d'entrepreneurs accompagnés, 8 chiffres de CA total généré. Les résultats parlent d'eux-mêmes.</p>
+          </div>
+        </div>
+
+        <!-- 3 — Green: systèmes spécifiques services -->
+        <div class="why-card animate-child" style="--delay:2">
+          <div class="why-card__icon why-card__icon--green" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#34A853" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+          </div>
+          <div class="why-card__body">
+            <h3 class="why-card__title">Spécialiste business de services</h3>
+            <p class="why-card__text">Systèmes éprouvés conçus spécifiquement pour freelances, agences et consultants B2B. Pas de solution générique — une approche sur mesure pour votre marché.</p>
+          </div>
+        </div>
+
+        <!-- 4 — Yellow: coût inférieur -->
+        <div class="why-card animate-child" style="--delay:3">
+          <div class="why-card__icon why-card__icon--yellow" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FBBC05" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="12" y1="1" x2="12" y2="23"/>
+              <path d="M17 5H9.5a3.5 3.5 0 1 0 0 7h5a3.5 3.5 0 1 1 0 7H6"/>
+            </svg>
+          </div>
+          <div class="why-card__body">
+            <h3 class="why-card__title">
+              Coût inférieur à un recrutement
+              <span class="badge badge--yellow">ROI 10×</span>
+            </h3>
+            <p class="why-card__text">Beaucoup moins qu'un Head of Marketing à plein temps, avec un ROI 10× supérieur. Vous payez pour des résultats, pas pour un salaire fixe.</p>
+          </div>
+        </div>
+
+        <!-- 5 — Green: garantie -->
+        <div class="why-card animate-child" style="--delay:4">
+          <div class="why-card__icon why-card__icon--green" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#34A853" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+          </div>
+          <div class="why-card__body">
+            <h3 class="why-card__title">
+              Garantie de résultat
+              <span class="badge badge--green">Garanti</span>
+            </h3>
+            <p class="why-card__text">Pas de résultat = pas de paiement. On prend le risque avec vous parce qu'on est certain de la méthode. C'est notre engagement.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Wave bottom — inversé -->
+    <div class="wave-bottom" aria-hidden="true">
+      <svg viewBox="0 0 1440 90" preserveAspectRatio="none" focusable="false">
+        <path d="M0,90 C480,0 720,60 1440,20 L1440,90 L0,90 Z" fill="#FFFFFF"/>
+      </svg>
+    </div>
+
+  </section>
+
+
+  <!-- ====================================================================
+       PROCESS — White bg · Timeline alternante 4 étapes
+       ==================================================================== -->
+  <section class="process" id="process" aria-labelledby="process-title">
+    <div class="container">
+
+      <div class="section-header">
+        <h2 class="section-title animate-child" style="--delay:0" id="process-title">
+          <span class="process-title-accent">Comment</span> ça fonctionne
+        </h2>
+        <p class="section-subtitle animate-child" style="--delay:1">
+          Un processus en 4 étapes, clair et structuré. Vous savez exactement où vous en êtes à chaque moment.
+        </p>
+      </div>
+
+      <div class="timeline" role="list">
+        <!-- Timeline gradient line (desktop) -->
+        <div class="timeline__line" aria-hidden="true"></div>
+
+        <!-- Step 1 — Left · Blue -->
+        <div class="timeline__step timeline__step--left animate-child from-left" style="--delay:0" role="listitem">
+          <div class="timeline__dot timeline__dot--blue" aria-hidden="true"></div>
+          <div class="timeline__card">
+            <span class="timeline__bg-number" aria-hidden="true">1</span>
+            <span class="timeline__badge timeline__badge--blue" aria-label="Étape 1">1</span>
+            <h3 class="timeline__step-title">Appel stratégique</h3>
+            <p class="timeline__step-text">
+              On analyse votre situation, votre marché et vos blocages en 45 min. Sans engagement, sans pression — juste une conversation honnête sur ce qui vous bloque.
+            </p>
+          </div>
+        </div>
+
+        <!-- Step 2 — Right · Red -->
+        <div class="timeline__step timeline__step--right animate-child from-right" style="--delay:1" role="listitem">
+          <div class="timeline__dot timeline__dot--red" aria-hidden="true"></div>
+          <div class="timeline__card">
+            <span class="timeline__bg-number" aria-hidden="true">2</span>
+            <span class="timeline__badge timeline__badge--red" aria-label="Étape 2">2</span>
+            <h3 class="timeline__step-title">Plan d'action sur mesure</h3>
+            <p class="timeline__step-text">
+              On conçoit vos systèmes d'acquisition et de conversion adaptés à votre business, votre marché et votre positionnement. Un plan précis, pas un template générique.
+            </p>
+          </div>
+        </div>
+
+        <!-- Step 3 — Left · Yellow -->
+        <div class="timeline__step timeline__step--left animate-child from-left" style="--delay:2" role="listitem">
+          <div class="timeline__dot timeline__dot--yellow" aria-hidden="true"></div>
+          <div class="timeline__card">
+            <span class="timeline__bg-number" aria-hidden="true">3</span>
+            <span class="timeline__badge timeline__badge--yellow" aria-label="Étape 3">3</span>
+            <h3 class="timeline__step-title">Implémentation</h3>
+            <p class="timeline__step-text">
+              On déploie, teste et optimise vos systèmes. Vous n'avez rien à faire — vous continuez de gérer votre business pendant que nous construisons votre moteur de croissance.
+            </p>
+          </div>
+        </div>
+
+        <!-- Step 4 — Right · Green -->
+        <div class="timeline__step timeline__step--right animate-child from-right" style="--delay:3" role="listitem">
+          <div class="timeline__dot timeline__dot--green" aria-hidden="true"></div>
+          <div class="timeline__card">
+            <span class="timeline__bg-number" aria-hidden="true">4</span>
+            <span class="timeline__badge timeline__badge--green" aria-label="Étape 4">4</span>
+            <h3 class="timeline__step-title">Scale</h3>
+            <p class="timeline__step-text">
+              Les résultats arrivent. Vous scalez sereinement, avec des systèmes qui tournent sans vous. On continue d'optimiser et d'itérer — ensemble.
+            </p>
+          </div>
+        </div>
+
+      </div><!-- .timeline -->
+    </div>
+  </section>
+
+
+  <!-- ====================================================================
+       SOCIAL PROOF — Sand bg · Chiffres clés + 3 cas d'étude
+       ==================================================================== -->
+  <section class="proof-section section--sand" id="proof" aria-labelledby="proof-title">
+
+    <!-- Wave top — douce et asymétrique -->
+    <div class="wave-top" aria-hidden="true">
+      <svg viewBox="0 0 1440 90" preserveAspectRatio="none" focusable="false">
+        <path d="M0,0 C360,90 720,20 1080,70 C1260,95 1380,10 1440,0 L1440,0 L0,0 Z" fill="#FFFFFF"/>
+      </svg>
+    </div>
+
+    <div class="container">
+
+      <!-- Section header -->
+      <div class="section-header">
+        <h2 class="section-title animate-child" style="--delay:0" id="proof-title">
+          Des résultats <span class="text-green">concrets</span>
+        </h2>
+        <p class="section-subtitle animate-child" style="--delay:1">
+          Des entrepreneurs qui ont franchi le cap. Des chiffres réels, pas des projections.
+        </p>
+      </div>
+
+      <!-- Stats row — 4 animated counters -->
+      <div class="stats-row" role="list" aria-label="Chiffres clés">
+
+        <div class="stat animate-child" style="--delay:0" role="listitem">
+          <span class="stat__number stat__number--blue" data-target="47" data-suffix="+">47+</span>
+          <span class="stat__label">Entrepreneurs accompagnés</span>
+        </div>
+
+        <div class="stat animate-child" style="--delay:1" role="listitem">
+          <span class="stat__number stat__number--red">8 chiffres</span>
+          <span class="stat__label">de CA généré au total</span>
+        </div>
+
+        <div class="stat animate-child" style="--delay:2" role="listitem">
+          <span class="stat__number stat__number--yellow">2022</span>
+          <span class="stat__label">Depuis — expérience terrain</span>
+        </div>
+
+        <div class="stat animate-child" style="--delay:3" role="listitem">
+          <span class="stat__number stat__number--green">100%</span>
+          <span class="stat__label">Garanti par résultat</span>
+        </div>
+
+      </div>
+
+      <!-- Case study cards -->
+      <div class="cases-grid">
+
+        <!-- Case 1 — Blue -->
+        <article class="case-card case-card--blue animate-child" style="--delay:0">
+          <div class="case-card__header">
+            <div style="display:flex;align-items:center;gap:0.75rem;">
+              <div class="case-card__avatar case-card__avatar--blue" aria-hidden="true">MC</div>
+              <div>
+                <div class="case-card__name">M. Castaing</div>
+                <div class="case-card__name-sub">Agence SEO</div>
+              </div>
+            </div>
+            <span class="badge badge--blue">Agence SEO</span>
+          </div>
+          <div class="case-card__body">
+            <p class="case-card__line"><strong>Problème :</strong> Bloqué à 200K€/an, 100% dépendant du réseau et du bouche-à-oreille.</p>
+            <p class="case-card__line"><strong>Solution :</strong> Système d'acquisition LinkedIn + stratégie de contenu organique IA.</p>
+          </div>
+          <div class="case-card__result">→ 650K€/an en 8 mois</div>
+        </article>
+
+        <!-- Case 2 — Red -->
+        <article class="case-card case-card--red animate-child" style="--delay:1">
+          <div class="case-card__header">
+            <div style="display:flex;align-items:center;gap:0.75rem;">
+              <div class="case-card__avatar case-card__avatar--red" aria-hidden="true">SL</div>
+              <div>
+                <div class="case-card__name">S. Lambert</div>
+                <div class="case-card__name-sub">Consultant B2B</div>
+              </div>
+            </div>
+            <span class="badge badge--red">Consultant B2B</span>
+          </div>
+          <div class="case-card__body">
+            <p class="case-card__line"><strong>Problème :</strong> Pipeline irrégulier, missions trouvées au hasard. Aucune visibilité à 3 mois.</p>
+            <p class="case-card__line"><strong>Solution :</strong> Système de nurturing + personal branding + séquences de conversion automatisées.</p>
+          </div>
+          <div class="case-card__result">→ 400K€/an en 6 mois</div>
+        </article>
+
+        <!-- Case 3 — Green -->
+        <article class="case-card case-card--green animate-child" style="--delay:2">
+          <div class="case-card__header">
+            <div style="display:flex;align-items:center;gap:0.75rem;">
+              <div class="case-card__avatar case-card__avatar--green" aria-hidden="true">AB</div>
+              <div>
+                <div class="case-card__name">A. Bertrand</div>
+                <div class="case-card__name-sub">Freelance développeur</div>
+              </div>
+            </div>
+            <span class="badge badge--green">Freelance Dev</span>
+          </div>
+          <div class="case-card__body">
+            <p class="case-card__line"><strong>Problème :</strong> TJM stagné, clients low-cost, impossible de monter en gamme.</p>
+            <p class="case-card__line"><strong>Solution :</strong> Repositionnement premium + contenu d'autorité + funnel de qualification clients.</p>
+          </div>
+          <div class="case-card__result">→ TJM ×2,5 en 4 mois</div>
+        </article>
+
+      </div>
+    </div>
+
+    <!-- Wave bottom -->
+    <div class="wave-bottom" aria-hidden="true">
+      <svg viewBox="0 0 1440 90" preserveAspectRatio="none" focusable="false">
+        <path d="M0,90 C240,0 480,60 720,30 C960,0 1200,70 1440,90 L1440,90 L0,90 Z" fill="#FFFFFF"/>
+      </svg>
+    </div>
+
+  </section>
+
+
+  <!-- ====================================================================
+       CTA FINAL — White bg · Grand titre + bouton rouge + garantie verte
+       ==================================================================== -->
+  <section class="cta-final" id="cta" aria-labelledby="cta-title">
+    <div class="container">
+      <div class="cta-final__inner">
+
+        <h2 class="cta-final__title animate-child" style="--delay:0" id="cta-title">
+          Prêt à <span class="text-red">scaler</span> votre business&nbsp;?
+        </h2>
+
+        <p class="cta-final__subtitle animate-child" style="--delay:1">
+          Réservez un appel stratégique gratuit. On analyse votre situation en 45 min et on vous dit honnêtement si on peut vous aider.
+        </p>
+
+        <a class="btn btn--red btn--lg animate-child" style="--delay:2" href="mailto:contact@trinity.fr">
+          <!-- Arrow icon -->
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="5" y1="12" x2="19" y2="12"/>
+            <polyline points="12 5 19 12 12 19"/>
+          </svg>
+          Réserver mon appel stratégique
+        </a>
+
+        <p class="cta-final__guarantee animate-child" style="--delay:3">
+          <span class="check-icon" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#34A853" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              <polyline points="9 12 11 14 15 10"/>
+            </svg>
+          </span>
+          Garanti par résultat — si on ne peut pas vous aider, on vous le dira.
+        </p>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ====================================================================
+       FOOTER — Logo, liens légaux, réseaux
+       ==================================================================== -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer__inner">
+
+        <!-- Logo -->
+        <a class="footer__logo" href="#hero" aria-label="Trinity — Retour en haut">
+          Trinity<span style="color:var(--blue);">.</span>
+        </a>
+
+        <!-- Legal links -->
+        <nav class="footer__links" aria-label="Liens légaux">
+          <a href="#">Mentions légales</a>
+          <a href="#">Politique de confidentialité</a>
+          <a href="#">CGV</a>
+          <a href="mailto:contact@trinity.fr">Contact</a>
+        </nav>
+
+        <!-- Social icons -->
+        <div class="footer__socials" aria-label="Réseaux sociaux">
+
+          <!-- LinkedIn -->
+          <a href="#" aria-label="LinkedIn" rel="noopener noreferrer" target="_blank">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+              <rect x="2" y="9" width="4" height="12"/>
+              <circle cx="4" cy="4" r="2"/>
+            </svg>
+          </a>
+
+          <!-- Twitter / X -->
+          <a href="#" aria-label="Twitter / X" rel="noopener noreferrer" target="_blank">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+            </svg>
+          </a>
+
+        </div>
+
+      </div>
+
+      <!-- Copyright -->
+      <p class="footer__copy" style="text-align:center;margin-top:1.5rem;">
+        © 2024 Trinity. Tous droits réservés.
+      </p>
+    </div>
+  </footer>
+
+
+  <script src="main.js"></script>
+</body>
+</html>
